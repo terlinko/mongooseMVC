@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const userController = require('../controller/userController')
+const bodybody = require('../middleware/bodybody')
 
 router.get('/', userController.get);
 router.post('/', userController.post);

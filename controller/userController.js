@@ -17,10 +17,8 @@ const controller = {
         .catch(err => res.status(500).json(err));
     },
     post: (req, res)=>{
-        console.log(req.body);
         const new_user = new User(req.body);
         new_user.save().then((result)=>{
-            console.log(result);
             res.json(result);
         })
         .catch(err => res.status(500).json(err));
@@ -29,7 +27,6 @@ const controller = {
         const userSeq = req.params.userSeq;
         User.deleteOne({ seq: userSeq }).then((result)=>{
             if(!result.deletedCount) return res.status(404).json({ err: 'user not found'});
-            console.log(result)
             res.json(result)
         })
         .catch(err => res.status(500).json(err));
@@ -39,7 +36,6 @@ const controller = {
         const update = req.body;
         User.updateOne({ seq: userSeq }, update).then((result)=>{
             if(!result.matchedCount) return res.status(404).json({ err: 'user not found'});
-            console.log(result)
             res.json(result)
         })
         .catch(err => res.status(500).json(err));
